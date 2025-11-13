@@ -1,8 +1,7 @@
-import burger from "@/assets/admin/burger.png";
 import { usePost } from "@/hooks/common/useAPI";
 import { useNavigate, useLocation } from "react-router-dom";
 import Modal from "@/component/common/modal";
-import { LogOut } from "lucide-react";
+import { LogOut, Menu } from "lucide-react";
 import { useState } from "react";
 import { getTitleByPath } from "@/component/admin/common/adminMenu";
 
@@ -32,7 +31,7 @@ const AdminHeader = ({ setToggleSidebar }: Props) => {
     <div className="flex flex-row items-center justify-between w-full p-5 pl-0 bg-[#F5F5F5]">
       <div className="w-1/3 flex flex-row gap-4 text-xl font-bold px-8">
         <button onClick={() => setToggleSidebar((p) => !p)}>
-          <img src={burger} alt="menu" className="w-6 h-5" />
+          <Menu />
         </button>
         <span>{getTitleByPath(pathname)}</span>
       </div>

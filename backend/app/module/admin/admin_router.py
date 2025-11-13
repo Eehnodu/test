@@ -12,6 +12,7 @@ router = APIRouter()
 @router.post("/login")
 @with_provider
 async def admin_login(p: ServiceProvider):
+    print(p.request)
     admin = await p.admin_service.admin_login(p.request)
     response = JSONResponse(status_code=200, content={"message": "admin login successful"})
     admin.user_nickname = "admin"

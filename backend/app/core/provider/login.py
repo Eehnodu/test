@@ -6,7 +6,6 @@ from fastapi import HTTPException
 
 from app.module.auth.auth_token import AuthToken
 
-
 def login(func):
     """로그인 필수 라우트용 데코레이터"""
     @wraps(func)

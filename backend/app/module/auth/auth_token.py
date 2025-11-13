@@ -74,12 +74,19 @@ class AuthToken:
         access_token = jwt.encode(access_payload, self.jwt_secret, algorithm=self.algorithm)
         refresh_token = jwt.encode(refresh_payload, self.jwt_secret, algorithm=self.algorithm)
 
-        session_info = {
-            "auth_type": type,
-            "id": user.id,
-            "user_nickname": user.user_nickname,
-            "created_at": user.created_at.isoformat() if user.created_at else None, 
-        }
+        if type == "user":
+            session_info = {
+                "auth_type": type,
+                "id": user.id,
+                "user_nickname": user.user_nickname,
+                "created_at": user.created_at.isoformat() if user.created_at else None, 
+            }
+        else:
+            session_info = {
+                "auth_type": type,
+                "id": user.id,
+                "created_at": user.created_at.isoformat() if user.created_at else None,
+            }
 
         # 공통 쿠키 설정
         encoded_info = base64.b64encode(
@@ -136,6 +143,8 @@ class AuthToken:
 
             # JWT 디코드
             payload = jwt.decode(refresh_token, self.jwt_secret, algorithms=[self.algorithm])
+
+            print("payload", payload)
             if payload.get("type") != "refresh":
                 raise HTTPException(status_code=401, detail="invalid token type")
 
@@ -143,7 +152,9 @@ class AuthToken:
             if not user_id:
                 raise HTTPException(status_code=401, detail="invalid refresh payload")
 
-            return user_id
+            type = payload.get("user")
+
+            return user_id, type
 
         except jwt.ExpiredSignatureError:
             raise HTTPException(status_code=401, detail="refresh token expired")

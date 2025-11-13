@@ -13,9 +13,11 @@ class ServiceProvider:
         self.db = db
         self._user_repo = None
         self._admin_repo = None
+        self._gpt_repo = None
         self._user_service = None
         self._auth_service = None
         self._admin_service = None
+        self._gpt_service = None
 
     @property
     def user_repo(self):
@@ -30,6 +32,13 @@ class ServiceProvider:
             from app.module.admin.admin_repository import AdminRepository
             self._admin_repo = AdminRepository(self.db)
         return self._admin_repo
+
+    @property
+    def gpt_repo(self):
+        if not self._gpt_repo:
+            from app.module.gpt.gpt_repository import GptRepository
+            self._gpt_repo = GptRepository(self.db)
+        return self._gpt_repo
 
     @property
     def user_service(self):
@@ -51,6 +60,13 @@ class ServiceProvider:
             from app.module.admin.admin_service import AdminService
             self._admin_service = AdminService(self.admin_repo)
         return self._admin_service
+
+    @property
+    def gpt_service(self):
+        if not self._gpt_service:
+            from app.module.gpt.gpt_service import GptService
+            self._gpt_service = GptService(self.gpt_repo)
+        return self._gpt_service
 
 async def get_provider(
     request: Request,

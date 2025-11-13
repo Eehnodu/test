@@ -3,13 +3,14 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: "GmarketSans";
-  font-weight: 300;
-  src: url("/fonts/GmarketSansTTFMedium.ttf") format("truetype");
+  font-family: "Inter";
+  src: url("./assets/fonts/Inter-VariableFont_opsz,wght.ttf") format("truetype");
+  font-weight: 100 900; /* variable font 범위 */
+  font-style: normal;
 }
 
 * {
-  font-family: "GmarketSans", sans-serif;
+  font-family: "Inter", sans-serif;
   -webkit-user-drag: none;
   user-select: none;
   touch-action: manipulation;
@@ -55,15 +56,6 @@ html {
 .scrollbar-visible {
   scrollbar-width: thin; /* 얇은 스크롤바 */
   scrollbar-color: #ffffff #f1f1f1; /* thumb, track */
-}
-
-span {
-  transform: translateY(2px);
-  line-height: 1.4;
-}
-
-.menu span {
-  line-height: 1;
 }
 
 @keyframes waveUp {

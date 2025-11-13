@@ -1,33 +1,36 @@
-export const ADMIN_MENU = [
+export interface SimpleLinkItem {
+  label: string;
+  to: string;
+}
+
+export type AdminMenuItem =
+  | {
+      type: "group";
+      title: string;
+      children: SimpleLinkItem[];
+    }
+  | {
+      type: "link";
+      label: string;
+      to: string;
+    };
+
+export const ADMIN_MENU: AdminMenuItem[] = [
   {
-    type: "group",
-    title: "회원",
-    children: [
-      { label: "회원 관리", to: "/admin/users" },
-      { label: "AI 모델 사용 내역", to: "/admin/logs" },
-    ],
+    type: "link",
+    label: "회원 관리",
+    to: "/admin/users",
   },
   {
-    type: "group",
-    title: "상품",
-    children: [
-      { label: "상품 관리", to: "/admin/avatars" },
-      { label: "거래 내역", to: "/admin/payments" },
-    ],
-  },
-  {
-    type: "group",
-    title: "공지사항",
-    children: [{ label: "공지사항 관리", to: "/admin/notices" }],
+    type: "link",
+    label: "GPT 설정",
+    to: "/admin/gpt",
   },
 ];
 
 export const ROUTE_TITLES = {
   "/admin/users": "회원 관리",
-  "/admin/logs": "AI 모델 사용 내역",
-  "/admin/avatars": "상품 관리",
-  "/admin/payments": "거래 내역",
-  "/admin/notices": "공지사항 관리",
+  "/admin/gpt": "GPT 설정",
 };
 
 export const getTitleByPath = (pathname: string) => {

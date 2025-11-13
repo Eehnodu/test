@@ -21,13 +21,16 @@ async def google_login(p: ServiceProvider):
 @router.post("/refresh_token")
 @with_provider
 async def refresh_token(p: ServiceProvider):
-    user_id = await p.auth_service.token_util.verify_refresh(p.request)
-    user = await p.auth_service.get_user_by_id(user_id)
+    user_id, type = await p.auth_service.token_util.verify_refresh(p.request)
+    if type == "user":
+        user = await p.auth_service.get_user_by_id(user_id)
+    elif type == "admin":
+        user = await p.admin_service.get_admin_by_id(user_id)
     if not user:
         raise HTTPException(status_code=404, detail="user not found")
 
     response = JSONResponse(status_code=200, content={"message": "user login successful"})
-    await p.auth_service.token_util.create_jwt_token(user, response, "user")
+    await p.auth_service.token_util.create_jwt_token(user, response, type)
     return response
 
 @router.post("/logout")

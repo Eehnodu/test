@@ -1,5 +1,7 @@
+// Sidebar.tsx
 import React from "react";
-import { ADMIN_MENU } from "@/component/admin/common/adminMenu";
+import { ADMIN_MENU, AdminMenuItem } from "@/component/admin/common/adminMenu";
+import SubLink from "./subLink";
 import Group from "./group";
 
 interface SidebarProps {
@@ -28,9 +30,17 @@ const Sidebar: React.FC<SidebarProps> = ({ toggleSidebar }) => {
           </div>
 
           <div className="flex-1 px-4 py-8 flex flex-col gap-3">
-            {ADMIN_MENU.map((item, idx) => (
-              <Group key={idx} title={item.title} links={item.children} />
-            ))}
+            {ADMIN_MENU.map((item: AdminMenuItem, idx) => {
+              // 1) group인 경우
+              if (item.type === "group") {
+                return (
+                  <Group key={idx} title={item.title} links={item.children} />
+                );
+              }
+
+              // 2) 기본 링크 (type 없거나 'link'인 경우)
+              return <SubLink key={idx} to={item.to} label={item.label} />;
+            })}
           </div>
         </div>
       </div>

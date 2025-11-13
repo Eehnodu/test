@@ -6,6 +6,7 @@ import ClientLayout from "./container/client/layout";
 import AdminLayout from "./container/admin/layout";
 import AdminLogin from "./container/admin/login";
 import AdminMain from "./container/admin/main";
+import AdminGpt from "./container/admin/gpt";
 
 function App() {
   const queryClient = new QueryClient();
@@ -21,6 +22,7 @@ function App() {
             </Route>
             <Route element={<AdminLayout />}>
               <Route path="/admin/users" element={<AdminMain />} />
+              <Route path="/admin/gpt" element={<AdminGpt />} />
             </Route>
           </Routes>
         </BrowserRouter>

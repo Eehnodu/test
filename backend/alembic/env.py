@@ -7,6 +7,9 @@ from sqlalchemy.ext.asyncio import create_async_engine
 from alembic import context
 from app.core.config.settings import DATABASE_URL
 from app.core.database.base import Base
+from app.module.user import user as user_models
+from app.module.admin import admin as admin_models
+from app.module.gpt import gpt as gpt_setting_models
 
 config = context.config
 if config.config_file_name is not None:

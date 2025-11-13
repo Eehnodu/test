@@ -6,10 +6,11 @@ const button = tv({
   variants: {
     variant: {
       solid:
-        "bg-black text-white hover:bg-gray-900 hover:text-gray-200 active:bg-gray-800 active:text-gray-500 disabled:bg-gray-30 disabled:text-gray-500 ",
+        "bg-black text-white hover:bg-gray-900 hover:text-gray-200 active:bg-gray-800 active:text-gray-500 disabled:bg-gray-300 disabled:text-gray-500 ",
       outlined:
         "bg-white border border-gray-500 text-gray-900 hover:bg-gray-100 active:bg-gray-200 disabled:bg-gray-white disabled:border-gray-300 disabled:text-gray-400 ",
-      transparented: "hover:bg-black-4 active:bg-black-8 disabled:text-gray-40",
+      transparented:
+        "hover:bg-black-4 active:bg-black-8 disabled:text-gray-400",
     },
     size: {
       sm: "h-8 px-3 text-sm",
