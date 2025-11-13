@@ -1,0 +1,171 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "GmarketSans";
+  font-weight: 300;
+  src: url("/fonts/GmarketSansTTFMedium.ttf") format("truetype");
+}
+
+* {
+  font-family: "GmarketSans", sans-serif;
+  -webkit-user-drag: none;
+  user-select: none;
+  touch-action: manipulation;
+}
+
+/* 모든 요소의 스크롤바 숨기기 (Chrome, Safari, Edge) */
+*::-webkit-scrollbar {
+  display: none;
+}
+
+/* Firefox: 스크롤바 너비를 0으로 설정 */
+html {
+  scrollbar-width: none; /* Firefox */
+}
+
+.hide_scroll {
+  -ms-overflow-style: none; /* IE, Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* 항상 표시되는 스크롤바 (Chrome, Safari, Edge) */
+.scrollbar-visible::-webkit-scrollbar {
+  width: 6px; /* 세로 스크롤바 두께 */
+  height: 8px; /* 가로 스크롤바 두께 */
+}
+
+.scrollbar-visible::-webkit-scrollbar-track {
+  background: #ffffff; /* 트랙 색상 */
+  border-radius: 9999px;
+}
+
+.scrollbar-visible::-webkit-scrollbar-thumb {
+  background-color: #ffffff; /* 썸 색상 */
+  border-radius: 9999px;
+  border: 2px solid #f1f1f1; /* 트랙과의 간격 */
+}
+
+.scrollbar-visible::-webkit-scrollbar-thumb:hover {
+  background-color: #ffffff; /* hover 시 진해짐 */
+}
+
+/* Firefox 대응 */
+.scrollbar-visible {
+  scrollbar-width: thin; /* 얇은 스크롤바 */
+  scrollbar-color: #ffffff #f1f1f1; /* thumb, track */
+}
+
+span {
+  transform: translateY(2px);
+  line-height: 1.4;
+}
+
+.menu span {
+  line-height: 1;
+}
+
+@keyframes waveUp {
+  0% {
+    transform: scaleY(0);
+  }
+  100% {
+    transform: scaleY(0.2);
+  }
+  50% {
+    transform: scaleY(var(--scale-to, 1));
+  }
+}
+
+.animate-wave {
+  transform-origin: bottom; /* 바닥 고정 */
+  animation: waveUp 1s infinite ease-in-out;
+}
+
+.custom-range {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent; /* 기본 배경 제거 */
+  cursor: pointer;
+  height: 3px;
+  margin: 0;
+  padding: 0;
+}
+
+/* Webkit: 투명 트랙 + thumb만 보이게 */
+.custom-range::-webkit-slider-runnable-track {
+  background: transparent;
+  height: 3px;
+  border-radius: 1.5px;
+}
+
+.custom-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  background: #000000;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-top: -4.5px; /* (12 - 3)/2 */
+  border: 2px solid white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+/* Firefox */
+.custom-range::-moz-range-track {
+  background: transparent;
+  height: 3px;
+  border-radius: 1.5px;
+  border: none;
+}
+
+.custom-range::-moz-range-progress {
+  background: #000000;
+  height: 3px;
+  border-radius: 1.5px;
+}
+
+.custom-range::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  background: #000000;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+/* IE / Edge */
+.custom-range::-ms-track {
+  background: transparent;
+  border: none;
+  color: transparent;
+  height: 3px;
+}
+
+.custom-range::-ms-fill-lower {
+  background: #000000;
+  border-radius: 1.5px;
+}
+
+.custom-range::-ms-fill-upper {
+  background: #e5e7eb;
+  border-radius: 1.5px;
+}
+
+.custom-range::-ms-thumb {
+  width: 12px;
+  height: 12px;
+  background: #000000;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid white;
+}
+
+.custom-range::-webkit-slider-thumb,
+.custom-range::-moz-range-thumb {
+  transform: translateX(-50%);
+  margin-left: 6px; /* 이 1줄 추가 → 끝에서 딱 맞음 */
+}
